@@ -21,6 +21,7 @@ jobs:
     - uses: Azure/container-scan@v0
       with:
         image-name: labo2:${{ github.run_number }}
+        security-treshold: "CRITICAL"
 
    
       
