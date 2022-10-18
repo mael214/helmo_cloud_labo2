@@ -22,6 +22,16 @@ jobs:
       with:
         image-name: labo2:${{ github.run_number }}
       continue-on-error: true
+      
+      
+      
+    - uses: Azure/docker-login@v1
+      with:
+        login-server: ${{ env.ACR_LOGIN_SERVER }}
+        username: ${{ env.REGISTRY_USERNAME }}
+        password: ${{ env.REGISTRY_PASSWORD }}
+    
+    - run: docker push labo2:${{ github.run_number }}
 
    
       
