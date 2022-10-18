@@ -16,17 +16,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile -t  ${{ secrets.ACR_LOGIN_SERVER }}/labo2:${{ github.run_number }}
+      run: docker build . --file Dockerfile -t labo2:${{ github.run_number }}
 
     - uses: Azure/container-scan@v0
       with:
-        image-name: ${{ secrets.ACR_LOGIN_SERVER }}/labo2:${{ github.run_number }}
+        image-name: labo2:${{ github.run_number }}
 
-    - uses: Azure/docker-login@v1
-      with:
-          login-server: ${{ secrets.ACR_LOGIN_SERVER }}
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
-    
-    - run: docker push ${{ secrets.ACR_LOGIN_SERVER }}/labo2:${{ github.run_number }}
+   
       
